@@ -165,8 +165,7 @@ class _HomePageState extends State<HomePage> {
                                   shape: BoxShape.circle,
                                   border: Border.all(width: 2, color: bgWhite),
                                   image: DecorationImage(
-                                    image:
-                                        NetworkImage(newFeeds[0]['profile']),
+                                    image: NetworkImage(newFeeds[0]['profile']),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -182,19 +181,58 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      Icon(FontAwesome.ellipsis_v, size: 15,)
+                      Icon(
+                        FontAwesome.ellipsis_v,
+                        size: 15,
+                      )
                     ],
                   ),
                 ),
                 Container(
                   height: 400,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(newFeeds[0]['imageUrl']),
-                      fit:BoxFit.cover
-                    )
+                      image: DecorationImage(
+                          image: NetworkImage(newFeeds[0]['imageUrl']),
+                          fit: BoxFit.cover)),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            splashRadius: 15,
+                            onPressed: () {},
+                            icon: SvgPicture.asset(
+                              'assets/images/heart.svg',
+                              width: 25,
+                              height: 25,
+                            ),
+                          ),
+                          IconButton(
+                              splashRadius: 15,
+                              onPressed: () {},
+                              icon: Icon(
+                                FontAwesome.comment_o,
+                                size: 25,
+                              )),
+                          IconButton(
+                            splashRadius: 15,
+                            onPressed: () {},
+                            icon: SvgPicture.asset(
+                              'assets/images/share.svg',
+                              width: 25,
+                              height: 25,
+                            ),
+                          ),
+                        ],
+                      ),
+                      IconButton(onPressed: (){}, icon: Icon(Feather.bookmark))
+                    ],
                   ),
-                )
+                ),
               ],
             )
           ],
