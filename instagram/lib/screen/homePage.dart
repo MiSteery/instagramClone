@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram/color.dart';
+import 'package:instagram/model/story.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,6 +41,98 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget getBody() {
-    return Container();
+    return ListView(
+      children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(top: 5, left:5, right: 5, ),
+          child: Row(
+            children:List.generate(stories.length, (index) {
+              return  Padding(
+                padding: const EdgeInsets.all(3),
+                child: Container(
+                  width: 80,
+                  child: Column(
+                    children: [
+                      Stack(
+                       
+                        children: [
+                           stories[index]['isStory']
+                           ?
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(colors: bgStoryColors)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 2, color: bgWhite),
+                                  image: DecorationImage(
+                                      image: NetworkImage(stories[index]['imageUrl']),
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                            ),
+                          ):
+                          Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 1, color: bgGrey),
+                                  image: DecorationImage(
+                                      image: NetworkImage(stories[index]['imageUrl']),
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                            ),
+                            stories[index]['isAdd']
+                            ?
+                          Positioned(
+                            right: 5,
+                            bottom: 0,
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: primary),
+                              child: Center(
+                                  child: Icon(
+                                Icons.add,
+                                color: bgWhite,
+                                size: 20,
+                              )),
+                            ),
+                          ):Container(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        stories[index]['username'],
+                        maxLines: 1,
+                        overflow:TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            })
+            
+            
+          ),
+        )
+      ],
+    );
   }
 }
