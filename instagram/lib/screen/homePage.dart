@@ -233,6 +233,14 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+                Padding(padding: EdgeInsets.only(left: 8, right: 8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('${newFeeds[0] ['likes']}  likes', style: TextStyle(fontWeight: FontWeight.bold),)
+                    
+                  ],
+                ),)
               ],
             )
           ],
