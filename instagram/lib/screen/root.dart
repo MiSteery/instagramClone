@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/color.dart';
 import 'package:instagram/model/buttomNavigation.dart';
+import 'package:instagram/screen/account.dart';
+import 'package:instagram/screen/activity.dart';
+import 'package:instagram/screen/homePage.dart';
+import 'package:instagram/screen/newPost.dart';
+import 'package:instagram/screen/search.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -19,38 +24,47 @@ class _RootState extends State<Root> {
   }
 
   Widget getBody() {
-    return Container();
+    return IndexedStack(
+      index: indexPage,
+      children: [
+        HomePage(),
+        Search(),
+        NewPost(),
+        Activity(),
+        Account(),
+      ],
+    );
   }
 
- Widget getBottomNavigationBar() {
+  Widget getBottomNavigationBar() {
     return Container(
       height: 70,
       decoration: BoxDecoration(
         color: bgLightGrey,
-        border: Border(top: BorderSide(width: 1, color: bgDark.withOpacity(0.3))),
+        border:
+            Border(top: BorderSide(width: 1, color: bgDark.withOpacity(0.3))),
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 5),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: List.generate(icons.length, (index) {
-            return IconButton(
-              onPressed: () {
-                setState(() {
-                  indexPage = index;
-                });
-              },
-              icon: SvgPicture.asset(
-                indexPage == index 
-                ? icons[index]['active']
-                : icons[index]['inactive'], 
-                width: 25, 
-                height: 25,
-              ),
-            );
-          })
-        ),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: List.generate(icons.length, (index) {
+              return IconButton(
+                onPressed: () {
+                  setState(() {
+                    indexPage = index;
+                  });
+                },
+                icon: SvgPicture.asset(
+                  indexPage == index
+                      ? icons[index]['active']
+                      : icons[index]['inactive'],
+                  width: 25,
+                  height: 25,
+                ),
+              );
+            })),
       ),
     );
   }
