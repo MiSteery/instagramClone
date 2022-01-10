@@ -138,8 +138,10 @@ class _HomePageState extends State<HomePage> {
         ),
         Divider(),
         Column(
-          children: [
-            Column(
+            children: List.generate(newFeeds.length, (index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -167,7 +169,8 @@ class _HomePageState extends State<HomePage> {
                                   shape: BoxShape.circle,
                                   border: Border.all(width: 2, color: bgWhite),
                                   image: DecorationImage(
-                                    image: NetworkImage(newFeeds[0]['profile']),
+                                    image: NetworkImage(
+                                        newFeeds[index]['profile']),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -176,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            newFeeds[0]['username'],
+                            newFeeds[index]['username'],
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -194,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                   height: 400,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(newFeeds[0]['imageUrl']),
+                          image: NetworkImage(newFeeds[index]['imageUrl']),
                           fit: BoxFit.cover)),
                 ),
                 Padding(
@@ -207,11 +210,17 @@ class _HomePageState extends State<HomePage> {
                           IconButton(
                             splashRadius: 15,
                             onPressed: () {},
-                            icon: SvgPicture.asset(
-                              'assets/images/heart.svg',
-                              width: 25,
-                              height: 25,
-                            ),
+                            icon: newFeeds[index]['isLike']
+                                ? SvgPicture.asset(
+                                    'assets/images/heart_red.svg',
+                                    width: 25,
+                                    height: 25,
+                                  )
+                                : SvgPicture.asset(
+                                    'assets/images/heart.svg',
+                                    width: 25,
+                                    height: 25,
+                                  ),
                           ),
                           IconButton(
                               splashRadius: 15,
@@ -242,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '${newFeeds[0]['likes']}  likes',
+                        '${newFeeds[index]['likes']}  likes',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -250,10 +259,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text.rich(TextSpan(children: [
                         TextSpan(
-                            text: newFeeds[0]['username'],
+                            text: newFeeds[index]['username'],
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
-                          text: newFeeds[0]['caption'],
+                          text: newFeeds[index]['caption'],
                           style: TextStyle(height: 1.5),
                         ),
                       ])),
@@ -261,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                         height: 8,
                       ),
                       Text(
-                        newFeeds[0]['comments'],
+                        newFeeds[index]['comments'],
                         style: TextStyle(
                           color: textGrey,
                         ),
@@ -324,16 +333,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        newFeeds[0]['dateTime'],
+                        newFeeds[index]['dateTime'],
                         style: TextStyle(fontSize: 12, color: textGrey),
                       )
                     ],
                   ),
                 )
               ],
-            )
-          ],
-        )
+            ),
+          );
+        }))
       ],
     );
   }
