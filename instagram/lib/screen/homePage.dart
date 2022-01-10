@@ -229,18 +229,34 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      IconButton(onPressed: (){}, icon: Icon(Feather.bookmark))
+                      IconButton(onPressed: () {}, icon: Icon(Feather.bookmark))
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(left: 8, right: 8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('${newFeeds[0] ['likes']}  likes', style: TextStyle(fontWeight: FontWeight.bold),)
-                    
-                  ],
-                ),)
+                Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${newFeeds[0]['likes']}  likes',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(
+                            text: newFeeds[0]['username'],
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(
+                          text: newFeeds[0]['captiom'],
+                          style: TextStyle(height: 1.5),
+                        ),
+                      ]))
+                    ],
+                  ),
+                )
               ],
             )
           ],
