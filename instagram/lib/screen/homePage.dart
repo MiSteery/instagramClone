@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/color.dart';
+import 'package:instagram/constant.dart';
 import 'package:instagram/model/newFeed.dart';
 import 'package:instagram/model/story.dart';
 
@@ -13,9 +14,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getAppBar(),
-      body: getBody(),
+      body: getBody(size),
     );
   }
 
@@ -23,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     return PreferredSize(
       child: SafeArea(
           child: Padding(
-        padding: EdgeInsets.fromLTRB(8, 20, 8, 8),
+        padding: EdgeInsets.only(top: 5, left: 5, right: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -41,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget getBody() {
+  Widget getBody(size) {
     return ListView(
       children: [
         SingleChildScrollView(
@@ -236,6 +238,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.only(left: 8, right: 8),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
@@ -250,10 +253,80 @@ class _HomePageState extends State<HomePage> {
                             text: newFeeds[0]['username'],
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
-                          text: newFeeds[0]['captiom'],
+                          text: newFeeds[0]['caption'],
                           style: TextStyle(height: 1.5),
                         ),
-                      ]))
+                      ])),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        newFeeds[0]['comments'],
+                        style: TextStyle(
+                          color: textGrey,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Container(
+                            width: (size.width - 30) * 0.7,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(width: 1, color: bgGrey),
+                                    image: DecorationImage(
+                                        image: NetworkImage(profile),
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                                Container(
+                                    height: 25,
+                                    width: (size.width - 70) * 0.5,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 10, left: 10, right: 10),
+                                      child: TextField(
+                                        cursorColor: textBlack.withOpacity(0.5),
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: "Add a comment",
+                                            hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: textBlack
+                                                    .withOpacity(0.5))),
+                                      ),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: (size.width - 30) * 0.3,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text("🥰"),
+                                SizedBox(width: 8),
+                                Text("😎"),
+                                SizedBox(width: 8),
+                                Icon(
+                                  Icons.add_circle_outline,
+                                  size: 20,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        newFeeds[0]['dateTime'],
+                        style: TextStyle(fontSize: 12, color: textGrey),
+                      )
                     ],
                   ),
                 )
