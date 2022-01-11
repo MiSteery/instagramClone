@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:instagram/color.dart';
+
 import 'package:instagram/constant.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -10,9 +12,10 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getAppBar(),
-      body: getBody(),
+      body: getBody(size),
     );
   }
 
@@ -46,15 +49,15 @@ class _AccountState extends State<Account> {
             Row(
               children: [
                 IconButton(
-                    splashRadius: 15,
-                    onPressed: () {},
-                    icon: Icon(AntDesign.plus),
-                    ),
-                        IconButton(
-                    splashRadius: 15,
-                    onPressed: () {},
-                    icon: Icon(FontAwesome.bars),
-                    )
+                  splashRadius: 15,
+                  onPressed: () {},
+                  icon: Icon(AntDesign.plus),
+                ),
+                IconButton(
+                  splashRadius: 15,
+                  onPressed: () {},
+                  icon: Icon(FontAwesome.bars),
+                )
               ],
             )
           ],
@@ -63,7 +66,38 @@ class _AccountState extends State<Account> {
     );
   }
 
-  Widget getBody() {
-    return Container();
+  Widget getBody(size) {
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 10, left: 10),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: (size.width - 20) * 0.3,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 1, color: bgGrey),
+                              image: DecorationImage(
+                                  image: NetworkImage(profile),
+                                  fit: BoxFit.cover)),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
