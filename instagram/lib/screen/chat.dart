@@ -132,7 +132,7 @@ class _ChatState extends State<Chat> {
           index: selectedIndex,
           children: [
             getChats(size),
-            getRooms(),
+            getRooms(size),
           ],
         )
       ],
@@ -253,7 +253,7 @@ class _ChatState extends State<Chat> {
     );
   }
 
-  Widget getRooms() {
+  Widget getRooms(size) {
     return Center(
         child: Padding(
       padding: EdgeInsets.only(top: 30, left: 20, right: 20),
@@ -271,6 +271,18 @@ class _ChatState extends State<Chat> {
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 14, height: 1.5, color: textBlack.withOpacity(0.8)),
+        ),
+        SizedBox(height: 20,),
+        Container(
+          height: 50,
+          width: size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: primary,
+          ),
+          child: Center(
+            child: Text('Create Room ', style: TextStyle(color: textWhite),),
+          ),
         )
       ]),
     ));
