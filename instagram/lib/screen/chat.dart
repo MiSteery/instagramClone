@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/color.dart';
@@ -130,8 +131,8 @@ class _ChatState extends State<Chat> {
         IndexedStack(
           index: selectedIndex,
           children: [
-            getChats(size), 
-         getRooms(),
+            getChats(size),
+            getRooms(),
           ],
         )
       ],
@@ -174,95 +175,104 @@ class _ChatState extends State<Chat> {
           height: 10,
         ),
         Column(
-          children: List.generate(chats.length, (index) {
-            return   InkWell(
-              onTap:(){},
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Container(
-                      height: (size.width - 20) * 0.15,
-                      width: (size.width - 20) * 0.15,
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  chats[index]['profile'],
-                                ),
-                                fit: BoxFit.cover,
+            children: List.generate(chats.length, (index) {
+          return InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Container(
+                    height: (size.width - 20) * 0.15,
+                    width: (size.width - 20) * 0.15,
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                chats[index]['profile'],
                               ),
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Container(
-                              height: 18,
-                              width: 18,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(width: 1, color: bgWhite),
-                                color: success,
-                              ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            height: 18,
+                            width: 18,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 1, color: bgWhite),
+                              color: success,
                             ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: (size.width - 20) * 0.7,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            chats[index]['username'],
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            '${chats[index]['description']} * ${chats[0]['dateTime']}',
+                            style: TextStyle(
+                                fontSize: 16, height: 1, color: textGrey),
                           )
                         ],
                       ),
                     ),
-                    Container(
-                      width: (size.width - 20) * 0.7,
-                      child: Padding(
-                          padding: EdgeInsets.only(left: 15),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                chats[index]['username'],
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '${chats[index]['description']} * ${chats[0]['dateTime']}',
-                                style: TextStyle(
-                                    fontSize: 16, height: 1, color: textGrey),
-                              )
-                            ],
-                          ),
-                          ),
+                  ),
+                  Container(
+                    width: (size.width - 20) * 0.15,
+                    alignment: Alignment.centerRight,
+                    child: Icon(
+                      Feather.camera,
+                      color: textBlack.withOpacity(0.5),
                     ),
-                    Container(
-                      width: (size.width - 20)* 0.15,
-                      alignment: Alignment.centerRight,
-                      child: Icon(Feather.camera, color: textBlack.withOpacity(0.5),),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
-            );
-          })
-          
-          
-        )
+            ),
+          );
+        }))
       ],
     );
   }
 
-Widget getRooms(){
-  return Center(
-    child: Padding(
-      padding: EdgeInsets.only(top:30, left: 20, right:20),
-      child: Column(
-        children:[
-          SvgPicture.asset('assets/images/video.svg', width: 100,),
-
-        ]
-      ),
-    )
-  );
-}
+  Widget getRooms() {
+    return Center(
+        child: Padding(
+      padding: EdgeInsets.only(top: 30, left: 20, right: 20),
+      child: Column(children: [
+        SvgPicture.asset(
+          'assets/images/video.svg',
+          width: 100,
+        ),
+        Text(
+          'Video Chat With Anyone',
+          style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Invite up to 50 people to join a video chat, even if they dont have Instagram or Messenger',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 14, height: 1.5, color: textBlack.withOpacity(0.8)),
+        )
+      ]),
+    ));
+  }
 }
