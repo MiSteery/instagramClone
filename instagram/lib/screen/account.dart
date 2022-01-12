@@ -89,25 +89,80 @@ class _AccountState extends State<Account> {
                                 image: NetworkImage(profile),
                                 fit: BoxFit.cover),
                           ),
-                          
                         ),
                         Positioned(
-                          bottom: 0,
-                          right: 25,
-                          child: Container(
-                          height: 25,
-                          width: 25,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: primary,
-                            border: Border.all(width: 1, color:bgWhite)
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.add, color:bgWhite,
+                            bottom: 0,
+                            right: 25,
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: primary,
+                                  border: Border.all(width: 1, color: bgWhite)),
+                              child: Center(
+                                child: Icon(
+                                  Icons.add,
+                                  color: bgWhite,
+                                ),
+                              ),
+                            ))
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: (size.width - 20) * 0.7,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              '61',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ))
+                            Text(
+                              'Posts',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '117',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Followers',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '173',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Following',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5),
+                            )
+                          ],
+                        )
                       ],
                     ),
                   )
