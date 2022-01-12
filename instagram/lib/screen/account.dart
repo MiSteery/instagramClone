@@ -195,7 +195,34 @@ class _AccountState extends State<Account> {
               )
             ],
           ),
-        )
+        ),
+        SizedBox(height:15),
+        Container(
+          height: 0.5,
+          width: size.width,
+          decoration: BoxDecoration(color: bgGrey.withOpacity(0.8)),
+        ),
+        Padding(padding: EdgeInsets.symmetric(vertical: 3),
+        child: Row(
+          children: [
+            Container(
+              width: (size.width *0.5),
+              child: IconButton(
+                splashRadius: 20,
+                icon: Icon(FontAwesome.th, color:textBlack),
+                onPressed: (){},
+              ),
+            ),
+             Container(
+              width: (size.width *0.5),
+              child: IconButton(
+                splashRadius: 20,
+                icon: Icon(FontAwesome.id_badge, color:textBlack),
+                onPressed: (){},
+              ),
+            ),
+          ],
+        ),)
       ],
     );
   }
