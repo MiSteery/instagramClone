@@ -72,6 +72,7 @@ class _AccountState extends State<Account> {
         Padding(
           padding: const EdgeInsets.only(right: 10, left: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -164,10 +165,14 @@ class _AccountState extends State<Account> {
                           ],
                         )
                       ],
-                    ),
+                    ),                   
                   )
                 ],
-              )
+              ),
+              SizedBox(height: 15,),
+              Text(instagramName),
+              Text(instagramBio),
+              SizedBox(height: 15,)
             ],
           ),
         )
