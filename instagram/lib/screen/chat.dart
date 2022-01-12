@@ -18,6 +18,7 @@ class _ChatState extends State<Chat> {
     return Scaffold(
       appBar: getAppBar(),
       body: getBody(size),
+     bottomSheet: getBottomSheet(),
     );
   }
 
@@ -133,6 +134,7 @@ class _ChatState extends State<Chat> {
           children: [
             getChats(size),
             getRooms(size),
+         
           ],
         )
       ],
@@ -287,4 +289,24 @@ class _ChatState extends State<Chat> {
       ]),
     ));
   }
+
+Widget getBottomSheet(){
+  return Container(
+    height:60,
+    decoration: BoxDecoration(
+      color: bgLightGrey,
+      border: Border(
+        top: BorderSide(width: 1, color: bgGrey.withOpacity(0.3)),
+      ),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(FontAwesome.camera, color:primary,),
+        SizedBox(width: 10,),
+        Text('Camera', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primary),)
+      ],
+    ),
+  );
+}
 }
