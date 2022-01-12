@@ -3,6 +3,7 @@ import 'package:instagram/color.dart';
 
 import 'package:instagram/constant.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:instagram/model/accountImage.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -10,8 +11,10 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getAppBar(),
@@ -209,21 +212,75 @@ class _AccountState extends State<Account> {
               width: (size.width *0.5),
               child: IconButton(
                 splashRadius: 20,
-                icon: Icon(FontAwesome.th, color:textBlack),
-                onPressed: (){},
+                icon: Icon(FontAwesome.th, color: selectedIndex ==0 ?  textBlack : textBlack.withOpacity(0.5)),
+                onPressed: (){
+                  setState(() {
+                    selectedIndex = 0;
+                  });
+                },
               ),
             ),
              Container(
               width: (size.width *0.5),
               child: IconButton(
                 splashRadius: 20,
-                icon: Icon(FontAwesome.id_badge, color:textBlack),
-                onPressed: (){},
+                icon: Icon(FontAwesome.id_badge, color:selectedIndex ==1 ?  textBlack : textBlack.withOpacity(0.5)),
+                onPressed: (){
+                  setState(() {
+                    selectedIndex = 1;
+                  });
+                }
               ),
             ),
           ],
-        ),)
+        ),
+        ),
+        Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 1,
+                  width: (size.width * 0.5),
+                  decoration: BoxDecoration(color: selectedIndex ==0 ? bgDark : Colors.transparent),
+                ),
+                            Container(
+                  height: 1,
+                  width: (size.width * 0.5),
+                  decoration: BoxDecoration(color: selectedIndex ==1 ? bgDark : Colors.transparent),
+                ),
+              ],
+            ),
+                        Container(
+                  height: 0.5,
+                  width: (size.width * 0.5),
+                  decoration: BoxDecoration(color: bgGrey.withOpacity(0.8)),
+                ),
+          ],
+        ),
+        SizedBox(height: 3,),
+        IndexedStack(children: [
+          getImages(size),
+        ],)
       ],
+    );
+  }
+
+  Widget getImages(size){
+    return Wrap(
+      direction: Axis.horizontal,
+      spacing:3,
+      runSpacing: 3,
+      children: List.generate(images.length, (index) {
+        return Container(
+          height:150,
+          width: (size.width -6)/ 3,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: NetworkImage(images[index]),
+            fit: BoxFit.cover)
+          ),
+        );
+      }),
     );
   }
 }
