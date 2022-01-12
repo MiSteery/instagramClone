@@ -171,70 +171,73 @@ class _ChatState extends State<Chat> {
         ),
         Column(
           children: List.generate(chats.length, (index) {
-            return   Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Container(
-                    height: (size.width - 20) * 0.15,
-                    width: (size.width - 20) * 0.15,
-                    child: Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                chats[index]['profile'],
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            height: 18,
-                            width: 18,
+            return   InkWell(
+              onTap:(){},
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Container(
+                      height: (size.width - 20) * 0.15,
+                      width: (size.width - 20) * 0.15,
+                      child: Stack(
+                        children: [
+                          Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              border: Border.all(width: 1, color: bgWhite),
-                              color: success,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  chats[index]['profile'],
+                                ),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: (size.width - 20) * 0.7,
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              chats[index]['username'],
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              height: 18,
+                              width: 18,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(width: 1, color: bgWhite),
+                                color: success,
+                              ),
                             ),
-                            Text(
-                              '${chats[index]['description']} * ${chats[0]['dateTime']}',
-                              style: TextStyle(
-                                  fontSize: 16, height: 1, color: textGrey),
-                            )
-                          ],
-                        ),
-                        ),
-                  ),
-                  Container(
-                    width: (size.width - 20)* 0.15,
-                    alignment: Alignment.centerRight,
-                    child: Icon(Feather.camera, color: textBlack.withOpacity(0.5),),
-                  )
-                ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: (size.width - 20) * 0.7,
+                      child: Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                chats[index]['username'],
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                '${chats[index]['description']} * ${chats[0]['dateTime']}',
+                                style: TextStyle(
+                                    fontSize: 16, height: 1, color: textGrey),
+                              )
+                            ],
+                          ),
+                          ),
+                    ),
+                    Container(
+                      width: (size.width - 20)* 0.15,
+                      alignment: Alignment.centerRight,
+                      child: Icon(Feather.camera, color: textBlack.withOpacity(0.5),),
+                    )
+                  ],
+                ),
               ),
             );
           })
