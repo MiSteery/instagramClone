@@ -259,8 +259,11 @@ class _AccountState extends State<Account> {
           ],
         ),
         SizedBox(height: 3,),
-        IndexedStack(children: [
+        IndexedStack(
+          index: selectedIndex,
+          children: [       
           getImages(size),
+          getImagesWithTags(size),
         ],)
       ],
     );
@@ -277,6 +280,24 @@ class _AccountState extends State<Account> {
           width: (size.width -6)/ 3,
           decoration: BoxDecoration(
             image: DecorationImage(image: NetworkImage(images[index]),
+            fit: BoxFit.cover)
+          ),
+        );
+      }),
+    );
+  }
+
+  Widget getImagesWithTags(size){
+    return Wrap(
+      direction: Axis.horizontal,
+      spacing:3,
+      runSpacing: 3,
+      children: List.generate(imageWithTags.length, (index) {
+        return Container(
+          height:150,
+          width: (size.width -6)/ 3,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: NetworkImage(imageWithTags[index]),
             fit: BoxFit.cover)
           ),
         );
