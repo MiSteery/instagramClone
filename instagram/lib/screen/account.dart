@@ -172,7 +172,19 @@ class _AccountState extends State<Account> {
               SizedBox(height: 15,),
               Text(instagramName),
               Text(instagramBio),
-              SizedBox(height: 15,)
+              SizedBox(height: 15,),
+              Container(
+                height:35,
+                width: (size.width - 20),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: bgGrey),
+                  borderRadius:BorderRadius.circular(5),
+                  color: bgLightGrey,
+                ),
+                child: Center(
+                  child:Text('Edit Profile', style: TextStyle(fontWeight: FontWeight.bold))
+                ),
+              )
             ],
           ),
         )
