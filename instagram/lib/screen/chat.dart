@@ -226,7 +226,13 @@ class _ChatState extends State<Chat> {
                                   fontSize: 16, height: 1, color: textGrey),
                             )
                           ],
-                        )),
+                        ),
+                        ),
+                  ),
+                  Container(
+                    width: (size.width - 20)* 0.15,
+                    alignment: Alignment.centerRight,
+                    child: Icon(Feather.camera, color: textBlack.withOpacity(0.5),),
                   )
                 ],
               ),
