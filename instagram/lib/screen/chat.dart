@@ -291,7 +291,8 @@ class _ChatState extends State<Chat> {
   }
 
 Widget getBottomSheet(){
-  return Container(
+ if(selectedIndex == 0){
+    return Container(
     height:60,
     decoration: BoxDecoration(
       color: bgLightGrey,
@@ -308,5 +309,8 @@ Widget getBottomSheet(){
       ],
     ),
   );
+ }else{
+   return Container(height: 1,);
+ }
 }
 }
