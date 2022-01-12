@@ -6,6 +6,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/model/newFeed.dart';
 import 'package:instagram/model/story.dart';
+import 'package:instagram/screen/chat.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,7 +36,11 @@ class _HomePageState extends State<HomePage> {
               width: 90,
             ),
             IconButton(
-                onPressed: () {},
+                splashRadius: 15,
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Chat()));
+                },
                 icon: Icon(FontAwesome5Brands.facebook_messenger))
           ],
         ),
