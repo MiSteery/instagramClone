@@ -8,6 +8,7 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -22,7 +23,7 @@ class _ChatState extends State<Chat> {
       preferredSize: Size.fromHeight(55),
       child: SafeArea(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -47,13 +48,17 @@ class _ChatState extends State<Chat> {
             children: [
               IconButton(
                 splashRadius: 15,
-                onPressed: (){}, icon: Icon(Feather.video),
-                ),
-                SizedBox(width: 5,),
-                IconButton(
+                onPressed: () {},
+                icon: Icon(Feather.video),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              IconButton(
                 splashRadius: 15,
-                onPressed: (){}, icon: Icon(Feather.edit),
-                ),
+                onPressed: () {},
+                icon: Icon(Feather.edit),
+              ),
             ],
           )
         ],
@@ -61,43 +66,103 @@ class _ChatState extends State<Chat> {
     );
   }
 
-Widget getBody(size){
-  return ListView(
-    children: [
-      Column(
-        children: [
-          SizedBox(height: 10,),
-          Row(
-            children: [
-              Container(
-                height: 45,
-                width: size.width * 0.5,
-                child: InkWell(
-                  onTap: (){},
-                  child: Center(
-                    child: Text('Chats', style:TextStyle(color: textBlack),
+  Widget getBody(size) {
+    return ListView(
+      children: [
+        Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Container(
+                  height: 45,
+                  width: size.width * 0.5,
+                  child: InkWell(
+                    child: Center(
+                      child: Text(
+                        'Chats',
+                        style: TextStyle(
+                            color: selectedIndex == 0
+                                ? textBlack
+                                : textBlack.withOpacity(0.5)),
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = 0;
+                      });
+                    },
                   ),
                 ),
-              ),
-              ),
-               Container(
-                height: 45,
-                width: size.width * 0.5,
-                child: InkWell(
-                  onTap: (){},
-                  child: Center(
-                    child: Text('Rooms', style:TextStyle(color: textBlack),
+                Container(
+                  height: 45,
+                  width: size.width * 0.5,
+                  child: InkWell(
+                    child: Center(
+                      child: Text(
+                        'Rooms',
+                        style: TextStyle(
+                            color: selectedIndex == 1
+                                ? textBlack
+                                : textBlack.withOpacity(0.5)),
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = 1;
+                      });
+                    },
                   ),
                 ),
-              ),
-              ),
-            ],
-          ),
-         
-        ],
-      )
-    ],
-  );
-}
-}
+              ],
+            ),
+            Container(
+              height: 1,
+              width: size.width,
+              decoration: BoxDecoration(color: bgGrey),
+            )
+          ],
+        ),
+        IndexedStack(
+          index: selectedIndex,
+          children: [getChats(size), Text('room')],
+        )
+      ],
+    );
+  }
 
+  Widget getChats(size) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            top: 15,
+            left: 10,
+            right: 10,
+          ),
+          child: Container(
+            height: 41,
+            width: (size.width - 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: bgGrey.withOpacity(0.3),
+            ),
+            child: Padding(padding: EdgeInsets.only(top: 5), child: TextField(
+              cursorColor: textBlack.withOpacity(0.5),
+              decoration: InputDecoration(
+                border:InputBorder.none,
+                prefixIcon: Icon(Icons.search, color: textBlack.withOpacity(0.5),),
+                hintText: 'Search',
+                hintStyle: TextStyle(color: textBlack.withOpacity(0.5))
+              ),
+            ),
+            ),
+          ),
+        ),
+        
+      ],
+    );
+  }
+}
