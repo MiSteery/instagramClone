@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:instagram/color.dart';
+import 'package:instagram/model/chat.dart';
 
 class Chat extends StatefulWidget {
   @override
@@ -149,19 +150,53 @@ class _ChatState extends State<Chat> {
               borderRadius: BorderRadius.circular(8),
               color: bgGrey.withOpacity(0.3),
             ),
-            child: Padding(padding: EdgeInsets.only(top: 5), child: TextField(
-              cursorColor: textBlack.withOpacity(0.5),
-              decoration: InputDecoration(
-                border:InputBorder.none,
-                prefixIcon: Icon(Icons.search, color: textBlack.withOpacity(0.5),),
-                hintText: 'Search',
-                hintStyle: TextStyle(color: textBlack.withOpacity(0.5))
+            child: Padding(
+              padding: EdgeInsets.only(top: 5),
+              child: TextField(
+                cursorColor: textBlack.withOpacity(0.5),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: textBlack.withOpacity(0.5),
+                    ),
+                    hintText: 'Search',
+                    hintStyle: TextStyle(color: textBlack.withOpacity(0.5))),
               ),
-            ),
             ),
           ),
         ),
-        
+        SizedBox(
+          height: 10,
+        ),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Container(
+                    height: (size.width - 20) * 0.15,
+                    width: (size.width - 20) * 0.15,
+                    child: Stack(
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    chats[0]['profile'],
+                                  ),
+                                  fit: BoxFit.cover,
+                                ))),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        )
       ],
     );
   }
