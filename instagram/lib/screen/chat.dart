@@ -170,8 +170,8 @@ class _ChatState extends State<Chat> {
           height: 10,
         ),
         Column(
-          children: [
-            Padding(
+          children: List.generate(chats.length, (index) {
+            return   Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
@@ -185,7 +185,7 @@ class _ChatState extends State<Chat> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: NetworkImage(
-                                chats[0]['profile'],
+                                chats[index]['profile'],
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -216,12 +216,12 @@ class _ChatState extends State<Chat> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              chats[0]['username'],
+                              chats[index]['username'],
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              '${chats[0]['description']} * ${chats[0]['dateTime']}',
+                              '${chats[index]['description']} * ${chats[0]['dateTime']}',
                               style: TextStyle(
                                   fontSize: 16, height: 1, color: textGrey),
                             )
@@ -236,8 +236,10 @@ class _ChatState extends State<Chat> {
                   )
                 ],
               ),
-            )
-          ],
+            );
+          })
+          
+          
         )
       ],
     );
