@@ -207,6 +207,27 @@ class _ChatState extends State<Chat> {
                       ],
                     ),
                   ),
+                  Container(
+                    width: (size.width - 20) * 0.7,
+                    child: Padding(
+                        padding: EdgeInsets.only(left: 15),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              chats[0]['username'],
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              '${chats[0]['description']} * ${chats[0]['dateTime']}',
+                              style: TextStyle(
+                                  fontSize: 16, height: 1, color: textGrey),
+                            )
+                          ],
+                        )),
+                  )
                 ],
               ),
             )
