@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/color.dart';
 import 'package:instagram/model/chat.dart';
 
@@ -128,7 +129,10 @@ class _ChatState extends State<Chat> {
         ),
         IndexedStack(
           index: selectedIndex,
-          children: [getChats(size), Text('room')],
+          children: [
+            getChats(size), 
+         getRooms(),
+          ],
         )
       ],
     );
@@ -247,4 +251,18 @@ class _ChatState extends State<Chat> {
       ],
     );
   }
+
+Widget getRooms(){
+  return Center(
+    child: Padding(
+      padding: EdgeInsets.only(top:30, left: 20, right:20),
+      child: Column(
+        children:[
+          SvgPicture.asset('assets/images/video.svg', width: 100,),
+
+        ]
+      ),
+    )
+  );
+}
 }
