@@ -10,8 +10,10 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getAppBar(),
+      body: getBody(size),
     );
   }
 
@@ -58,4 +60,44 @@ class _ChatState extends State<Chat> {
       )),
     );
   }
+
+Widget getBody(size){
+  return ListView(
+    children: [
+      Column(
+        children: [
+          SizedBox(height: 10,),
+          Row(
+            children: [
+              Container(
+                height: 45,
+                width: size.width * 0.5,
+                child: InkWell(
+                  onTap: (){},
+                  child: Center(
+                    child: Text('Chats', style:TextStyle(color: textBlack),
+                  ),
+                ),
+              ),
+              ),
+               Container(
+                height: 45,
+                width: size.width * 0.5,
+                child: InkWell(
+                  onTap: (){},
+                  child: Center(
+                    child: Text('Rooms', style:TextStyle(color: textBlack),
+                  ),
+                ),
+              ),
+              ),
+            ],
+          ),
+         
+        ],
+      )
+    ],
+  );
 }
+}
+
