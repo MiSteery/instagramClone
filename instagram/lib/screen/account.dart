@@ -182,8 +182,16 @@ class _AccountState extends State<Account> {
                   color: bgLightGrey,
                 ),
                 child: Center(
-                  child:Text('Edit Profile', style: TextStyle(fontWeight: FontWeight.bold))
+                  child:Text('Edit Profile', )
                 ),
+              ),
+              SizedBox(height:15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Story Highlights', style: TextStyle(fontWeight: FontWeight.bold),),
+                  Icon(FontAwesome.angle_down, size:20)
+                ],
               )
             ],
           ),
