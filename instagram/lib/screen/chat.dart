@@ -181,17 +181,32 @@ class _ChatState extends State<Chat> {
                     child: Stack(
                       children: [
                         Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                chats[0]['profile'],
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            height: 18,
+                            width: 18,
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    chats[0]['profile'],
-                                  ),
-                                  fit: BoxFit.cover,
-                                ))),
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 1, color: bgWhite),
+                              color: success,
+                            ),
+                          ),
+                        )
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             )
