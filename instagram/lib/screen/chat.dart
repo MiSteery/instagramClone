@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:instagram/color.dart';
 import 'package:instagram/model/chat.dart';
+import 'package:instagram/screen/chatDetail.dart';
 
 class Chat extends StatefulWidget {
   @override
@@ -180,7 +181,9 @@ class _ChatState extends State<Chat> {
         Column(
             children: List.generate(chats.length, (index) {
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => ChatDetail()));
+            },
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
@@ -201,6 +204,7 @@ class _ChatState extends State<Chat> {
                             ),
                           ),
                         ),
+                        chats[index]['dataTime'] == 'now'?
                         Positioned(
                           bottom: 0,
                           right: 0,
@@ -213,7 +217,7 @@ class _ChatState extends State<Chat> {
                               color: success,
                             ),
                           ),
-                        )
+                        ): Container()
                       ],
                     ),
                   ),
