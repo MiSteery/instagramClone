@@ -14,7 +14,7 @@ class _ChatDetailState extends State<ChatDetail> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getAppBar(),
-      body: getBody(),
+      body: getBody(size),
     );
   }
 
@@ -74,8 +74,47 @@ class _ChatDetailState extends State<ChatDetail> {
     );
   }
 
-Widget getBody(){
-  return ListView();
+  Widget getBody(size) {
+    return ListView(
+      children: [
+        Container(
+          height: size.height * 0.83,
+          child: ListView(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: ChatBubble(),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
 }
 
+class ChatBubble extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 1.5, bottom: 1.5),
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: bgGrey.withOpacity(0.3),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                'Hi',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
