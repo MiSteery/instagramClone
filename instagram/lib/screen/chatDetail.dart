@@ -14,6 +14,7 @@ class _ChatDetailState extends State<ChatDetail> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getAppBar(),
+      body: getBody(),
     );
   }
 
@@ -72,4 +73,9 @@ class _ChatDetailState extends State<ChatDetail> {
       ])),
     );
   }
+
+Widget getBody(){
+  return ListView();
+}
+
 }
