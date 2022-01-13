@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:instagram/color.dart';
-import 'package:instagram/constant.dart';
 import 'package:instagram/model/chat.dart';
 import 'package:instagram/model/chatDetail.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
