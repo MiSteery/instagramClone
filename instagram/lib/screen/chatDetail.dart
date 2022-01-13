@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:instagram/color.dart';
 import 'package:instagram/model/chat.dart';
 
@@ -20,36 +21,55 @@ class _ChatDetailState extends State<ChatDetail> {
     return PreferredSize(
       preferredSize: Size.fromHeight(55),
       child: SafeArea(
-          child: Row(
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: textBlack,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Row(
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: textBlack,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          SizedBox(width: 10),
-          Container(
-            height: 33,
-            width: 33,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: NetworkImage(chats[0]['profile']), fit: BoxFit.cover),
+            SizedBox(width: 10),
+            Container(
+              height: 33,
+              width: 33,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: NetworkImage(chats[0]['profile']),
+                    fit: BoxFit.cover),
+              ),
             ),
-          ),
-          SizedBox(
-            width: 15,
-          ),
-          Text(
-            chats[0]['username'],
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          )
-        ],
-      )),
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              chats[0]['username'],
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+        Row(
+          children: [
+            IconButton(
+              icon: Icon(Feather.video),
+              onPressed: () {},
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            IconButton(
+              icon: Icon(Feather.info),
+              onPressed: () {},
+            )
+          ],
+        )
+      ])),
     );
   }
 }
